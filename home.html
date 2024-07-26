@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>簡約風格遊戲平台</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            height: 100%;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+        main {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+        .game-categories {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .category {
+            background-color: #fff;
+            padding: 1rem;
+            text-align: center;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .category:hover {
+            background-color: #eee;
+            transform: scale(1.05);
+        }
+        .category.selected {
+            background-color: #333;
+            color: #fff;
+        }
+        .start-button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .start-button:hover {
+            background-color: #555;
+        }
+        .start-button:disabled {
+            background-color: #999;
+            cursor: not-allowed;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 1rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>簡約風格遊戲平台</h1>
+        </header>
+        <main>
+            <div class="game-categories">
+                <div class="category" data-category="1">遊戲類別 1</div>
+                <div class="category" data-category="2">遊戲類別 2</div>
+                <div class="category" data-category="3">遊戲類別 3</div>
+                <div class="category" data-category="4">遊戲類別 4</div>
+            </div>
+            <a id="startButton" href="./index.html" class="start-button" disabled>開始刷</a>
+        </main>
+        <footer>
+            <p>&copy; 2024 簡約風格遊戲平台. 版權所有.</p>
+        </footer>
+    </div>
+
+    <script>
+        const categories = document.querySelectorAll('.category');
+        const startButton = document.getElementById('startButton');
+        let selectedCategory = null;
+
+        categories.forEach(category => {
+            category.addEventListener('click', () => {
+                categories.forEach(c => c.classList.remove('selected'));
+                category.classList.add('selected');
+                selectedCategory = category.dataset.category;
+                startButton.disabled = false;
+            });
+        });
+
+        startButton.addEventListener('click', () => {
+            if (selectedCategory) {
+                window.location.href = `game-category-${selectedCategory}.html`;
+            }
+        });
+    </script>
+</body>
+</html>
