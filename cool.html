@@ -1,0 +1,103 @@
+<!-- game.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Details</title>
+    <style>
+        /* 可选的样式 */
+        .game-container {
+            width: 100%;
+            height: 600px; /* 调整高度以适应游戏 */
+        }
+        .interaction-area {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        .interaction-area button {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Game Details</h1>
+    
+    <div class="game-container">
+        <iframe src="https://nutwg.com/cluster-rush/" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
+    </div>
+
+    <div class="interaction-area">
+        <button id="likeButton">Like</button>
+        <span id="likeCount">0</span> Likes
+    </div>
+
+    <h2>Comments</h2>
+    <div id="comments">
+        <!-- 留言区内容 -->
+        <form id="commentForm">
+            <input type="text" id="username" placeholder="Your name" required>
+            <textarea id="comment" placeholder="Write your comment" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+        <div id="commentsList">
+            <!-- 留言列表 -->
+        </div>
+    </div>
+
+    <!-- 可选的 JavaScript 代码 -->
+    <script>
+        const gameId = 1; // 替换为当前游戏的 ID
+
+        // 点赞功能
+        const likeButton = document.getElementById('likeButton');
+        const likeCount = document.getElementById('likeCount');
+        let likes = 0; // 可以从后端获取初始点赞数
+        likeCount.textContent = likes;
+
+        likeButton.addEventListener('click', () => {
+            likes++;
+            likeCount.textContent = likes;
+            // 可以通过 Ajax 请求向后端发送点赞操作
+        });
+
+        // 提交评论
+        const commentForm = document.getElementById('commentForm');
+        const commentsList = document.getElementById('commentsList');
+
+        commentForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const comment = document.getElementById('comment').value;
+
+            // 可以通过 Ajax 请求将评论提交给后端
+            const newComment = { username, comment };
+
+            // 在页面上添加新评论
+            const commentElement = document.createElement('div');
+            commentElement.classList.add('comment');
+            commentElement.innerHTML = `<strong>${username}:</strong> ${comment}`;
+            commentsList.appendChild(commentElement);
+
+            // 清空表单
+            document.getElementById('username').value = '';
+            document.getElementById('comment').value = '';
+        });
+
+        // 可以在页面加载时从后端获取并显示现有评论
+        // 模拟加载现有评论
+        const existingComments = [
+            { username: 'User1', comment: 'Great game!' },
+            { username: 'User2', comment: 'I love it!' }
+        ];
+
+        existingComments.forEach(comment => {
+            const commentElement = document.createElement('div');
+            commentElement.classList.add('comment');
+            commentElement.innerHTML = `<strong>${comment.username}:</strong> ${comment.comment}`;
+            commentsList.appendChild(commentElement);
+        });
+    </script>
+</body>
+</html>

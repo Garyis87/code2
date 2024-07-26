@@ -13,10 +13,10 @@ let games = [
     { id: 4, name: 'Game 4', url: 'https://gamekuo.com/html5/4425', likes: 0, comments: [] },
     { id: 5, name: 'Game 5', url: 'https://shellshock.io', likes: 0, comments: [] },
     { id: 6, name: 'Game 6', url: 'https://krunker.io/?game=TOK:owcrh', likes: 0, comments: [] },
-    { id: 7, name: 'Game 7', url: '', likes: 0, comments: [] },
-    { id: 8, name: 'Game 8', url: '', likes: 0, comments: [] },
-    { id: 9, name: 'Game 9', url: '', likes: 0, comments: [] },
-    { id: 10, name: 'Game 10', url: '', likes: 0, comments: [] }
+    { id: 7, name: 'Game 7', url: 'https://www.gm99.com/ssjj/', likes: 0, comments: [] },
+    { id: 8, name: 'Game 8', url: 'https://ouo.269seahorse.me/', likes: 0, comments: [] },
+    { id: 9, name: 'Game 9', url: 'https://www.stumbleguys.com/play', likes: 0, comments: [] },
+    { id: 10, name: 'Game 10', url: 'https://doodles.google/doodle/halloween-2016/', likes: 0, comments: [] }
 ];
 
 app.get('/games', (req, res) => {
